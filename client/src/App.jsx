@@ -4,10 +4,13 @@ import memories from "./images/memories.png";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 
+import useStyles from "./styles";
+
 const App = () => {
+  const classes = useStyles();
   return (
     <Container maxWidth="lg">
-      <AppBar position="static" color="inherit">
+      <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography variant="h2" align="center">
           Memories
           <img src={memories} alt="memories" height="60" />

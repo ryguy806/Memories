@@ -1,6 +1,6 @@
-import { createStyles, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
-export const styles = makeStyles(() => ({
+export default makeStyles = makeStyles(() => ({
   appBar: {
     borderRadius: 15,
     margin: "30px 0",
