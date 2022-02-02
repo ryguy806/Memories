@@ -18,11 +18,11 @@ const Form = () => {
 
   return (
     <>
-      <Paper class={classes.paper}>
+      <Paper className={classes.paper}>
         <form
           autoComplete="off"
           noValidate
-          className={classes.form}
+          className={`${classes.root} ${classes.form}`}
           onSubmit={handleSubmit}
         >
           <Typography variant="h6">Create Memory</Typography>
