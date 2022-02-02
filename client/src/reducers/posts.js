@@ -1,4 +1,4 @@
-const reducer = (posts = [], action) => {
+const posts = (posts = [], action) => {
   switch (action.type) {
     case "CREATE":
       return posts;
@@ -8,3 +8,5 @@ const reducer = (posts = [], action) => {
       return posts;
   }
 };
+
+export default posts;
