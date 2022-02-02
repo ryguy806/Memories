@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import useStyles from "./styles.js";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../api/index.js";
+import { createPost, updatePost } from "../../api/index.js";
 
-const Form = () => {
+//Get the current ID of the post.
+
+const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const [postData, setPostData] = useState({
     creator: "",
@@ -19,7 +21,12 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
   };
   const clear = () => {};
 
