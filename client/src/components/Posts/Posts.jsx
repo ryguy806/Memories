@@ -10,8 +10,6 @@ const Posts = ({ setCurrentId }) => {
     return state.posts;
   });
 
-  console.log(posts);
-
   return !posts.length ? (
     <CircularProgress />
   ) : (
