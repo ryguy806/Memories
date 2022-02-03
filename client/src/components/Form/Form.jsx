@@ -1,9 +1,9 @@
 import { Button, Paper, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from "./styles.js";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPost, updatePost } from "../../api/index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../actions/posts";
 
 //Get the current ID of the post.
 
@@ -16,6 +16,13 @@ const Form = ({ currentId, setCurrentId }) => {
     tags: "",
     selectedFile: "",
   });
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const dispatch = useDispatch();
 
@@ -27,8 +34,18 @@ const Form = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(createPost(postData));
     }
+    clear();
   };
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <>
@@ -39,7 +56,9 @@ const Form = ({ currentId, setCurrentId }) => {
           className={`${classes.root} ${classes.form}`}
           onSubmit={handleSubmit}
         >
-          <Typography variant="h6">Create Memory</Typography>
+          <Typography variant="h6">
+            {currentId ? "Edit" : "Create"} Memory
+          </Typography>
           <TextField
             name="creator"
             variant="outlined"
